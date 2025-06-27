@@ -3,7 +3,6 @@
 Ce script shell installe **GLPI (dernière version)** avec toutes les bonnes pratiques d’IT-Connect :  
 Apache sécurisé (SSL + HSTS), PHP-FPM 8.2 durci, MariaDB configurée, arborescence optimisée.
 
----
 
 ## 🧩 Étapes automatisées
 
@@ -32,7 +31,7 @@ Apache sécurisé (SSL + HSTS), PHP-FPM 8.2 durci, MariaDB configurée, arboresc
    + Sécurisation des cookies (`httponly`, `secure`)  
    + Redémarrage des services Apache et PHP
 
----
+
 
 ## 🔐 Sécurité appliquée
 
@@ -41,7 +40,7 @@ Apache sécurisé (SSL + HSTS), PHP-FPM 8.2 durci, MariaDB configurée, arboresc
 - **Sécurisation des cookies PHP** : `session.cookie_httponly = on` et `session.cookie_secure = on`
 - Suppression des vhosts Apache par défaut
 
----
+
 
 ## 📁 Arborescence recommandée
 
@@ -52,14 +51,13 @@ Apache sécurisé (SSL + HSTS), PHP-FPM 8.2 durci, MariaDB configurée, arboresc
 | `/var/lib/glpi`         | Données (fichiers GLPI)    |
 | `/var/log/glpi`         | Logs de l’application      |
 
----
+
 
 ## 📎 Pré-requis
 
 - Système : **Debian 12**
 - DNS local : `glpi.local` pointant vers le serveur
 
----
 
 ## 🧪 Accès post-installation
 
@@ -71,12 +69,16 @@ Identifiants initiaux :
 - **tech / tech**  
 - **normal / normal**
 
----
 
 ## 🛠️ Sources officielles
 
 - [Documentation GLPI officielle](https://glpi-install.readthedocs.io/fr/develop/)
 - [Tutoriel IT-Connect (Debian 12)](https://www.it-connect.fr/installation-pas-a-pas-de-glpi-10-sur-debian-12/)
+
+
+
+
+
 
 # 🔐 Script de durcissement Apache et de la VM (Debian)
 
@@ -119,4 +121,46 @@ Ce script automatise plusieurs tâches de sécurisation d’un environnement GLP
 
 ```bash
 sudo bash harden_apache_vm.sh
+
+
+
+
+
+
+
+
+# 🛡️ Script de durcissement complémentaire GLPI – Niveau ANSSI
+
+Ce script applique un ensemble de mesures de sécurité supplémentaires pour renforcer la posture de sécurité d’un serveur Debian 12 hébergeant GLPI.
+
+## 🔒 Objectifs
+
+- Appliquer les recommandations ANSSI de durcissement système et services
+- Sécuriser Apache et PHP
+- Activer le monitoring de fichiers critiques via `auditd`
+- Ajouter une rotation dédiée des logs de GLPI
+- Configurer `fail2ban` pour prévenir les attaques par force brute
+
+## 🧰 Fonctionnalités incluses
+
+| Fonction                         | Détails                                                                 |
+|----------------------------------|-------------------------------------------------------------------------|
+| 🔐 TLS renforcé                  | SSLProtocol TLS 1.2+, cipher suites conformes ANSSI, HSTS, headers CSP |
+| 🚫 fail2ban                      | Jails pour SSH + Apache (logs GLPI)                                    |
+| 📜 auditd                        | Surveillance de `/etc/glpi`, `/var/www/glpi`, `/var/lib/glpi`, etc.    |
+| ⚙️ sysctl                        | Désactivation des redirects, ASLR, hardening réseau                     |
+| 🐘 PHP hardening                 | `expose_php`, `disable_functions`, `open_basedir`, cookies sécurisés   |
+| 📂 logrotate dédié               | Rotation quotidienne des logs GLPI + Apache                            |
+
+## 📦 Prérequis
+
+- GLPI déjà installé via le [script principal](https://github.com/...) (cf. `glpi-install.sh`)
+- Serveur Debian 12 ou compatible
+- Apache + PHP 8.2 FPM + SSL déjà en place
+
+## 🚀 Utilisation
+
+```bash
+chmod +x harden_extra.sh
+sudo ./harden_extra.sh
 
