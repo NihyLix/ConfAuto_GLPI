@@ -80,7 +80,7 @@ Identifiants initiaux :
 
 
 
-# 🔐 Script de durcissement Apache et de la VM (Debian)
+# 🔐 Script de durcissement level 1 : Apache et de la VM (Debian)
 
 Ce script automatise plusieurs tâches de sécurisation d’un environnement GLPI hébergé sous Apache2 sur une VM Debian. Il suit les bonnes pratiques générales de sécurité, et certaines recommandations de l’ANSSI.
 
@@ -121,6 +121,7 @@ Ce script automatise plusieurs tâches de sécurisation d’un environnement GLP
 
 ```bash
 sudo bash harden_apache_vm.sh
+```
 
 
 
@@ -128,8 +129,7 @@ sudo bash harden_apache_vm.sh
 
 
 
-
-# 🛡️ Script de durcissement complémentaire GLPI – Niveau ANSSI
+# 🛡️ Script de durcissement level 2 : complémentaire GLPI – Niveau ANSSI
 
 Ce script applique un ensemble de mesures de sécurité supplémentaires pour renforcer la posture de sécurité d’un serveur Debian 12 hébergeant GLPI.
 
