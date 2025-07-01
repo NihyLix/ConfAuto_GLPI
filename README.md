@@ -1,3 +1,6 @@
+> [!WARNING]
+> ATTENTION PROBLEME SSL CONSTATÉ PATCH A VENIR
+
 # 🚀 Script d’installation automatisée de GLPI 10 sur Debian 12
 
 Ce script shell installe **GLPI (dernière version)** avec toutes les bonnes pratiques d’IT-Connect :  
