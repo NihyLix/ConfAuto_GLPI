@@ -1,4 +1,4 @@
-> [!WARNING]
+> [!CAUTION]
 > ATTENTION PROBLEME SSL CONSTATÉ PATCH A VENIR
 
 # 🚀 Script d’installation automatisée de GLPI 10 sur Debian 12
